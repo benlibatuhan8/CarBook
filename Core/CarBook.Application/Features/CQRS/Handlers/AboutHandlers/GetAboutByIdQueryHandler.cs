@@ -1,4 +1,6 @@
-﻿using CarBook.Application.Interfaces;
+﻿using CarBook.Application.Features.CQRS.Queries.AboutQueries;
+using CarBook.Application.Features.CQRS.Results.AboutResults;
+using CarBook.Application.Interfaces;
 using CarBook.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,17 @@ namespace CarBook.Application.Features.CQRS.Handlers.AboutHandlers
         public GetAboutByIdQueryHandler(IRepository<About> repository)
         {
             _repository = repository;
+        }
+        public async Task<GetAboutByIdQueryResult> Handle(GetAboutByIdQuery _query)
+        {
+            var values = await _repository.GetByIdAsync(_query.Id);
+            return new GetAboutByIdQueryResult
+            {
+                AboutId = values.AboutId,
+                Description = values.Description,
+                ImageUrl = values.ImageUrl,
+                Title = values.Title
+            };
         }
     }
 }
