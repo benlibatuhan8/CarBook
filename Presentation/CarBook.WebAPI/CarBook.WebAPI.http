@@ -1,6 +1,6 @@
-@CarBook.WebAPI_HostAddress = http://localhost:5272
+@CarBook.WebApi_HostAddress = http://localhost:5037
 
-GET {{CarBook.WebAPI_HostAddress}}/weatherforecast/
+GET {{CarBook.WebApi_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###

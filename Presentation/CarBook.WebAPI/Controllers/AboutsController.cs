@@ -16,8 +16,8 @@ namespace CarBook.WebAPI.Controllers
         private readonly UpdateAboutCommandHandler _updateAboutCommandHandler;
         private readonly RemoveAboutCommandHandler _removeAboutCommandHandler;
 
-        public AboutsController(CreateAboutCommandHandler createAboutCommandHandler, GetAboutByIdQueryHandler getAboutByIdQueryHandler, 
-            GetAboutQueryHandler getAboutQueryHandler, UpdateAboutCommandHandler updateAboutCommandHandler, 
+        public AboutsController(CreateAboutCommandHandler createAboutCommandHandler, GetAboutByIdQueryHandler getAboutByIdQueryHandler,
+            GetAboutQueryHandler getAboutQueryHandler, UpdateAboutCommandHandler updateAboutCommandHandler,
             RemoveAboutCommandHandler removeAboutCommandHandler)
         {
             _createAboutCommandHandler = createAboutCommandHandler;
@@ -35,13 +35,13 @@ namespace CarBook.WebAPI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAbout(int id)
         {
-            var value = await _getAboutByIdQueryHandler.Handle( new GetAboutByIdQuery(id));
+            var value = await _getAboutByIdQueryHandler.Handle(new GetAboutByIdQuery(id));
             return Ok(value);
         }
         [HttpPost]
         public async Task<IActionResult> CreateAbout(CreateAboutCommand command)
         {
-            _createAboutCommandHandler.Handle( command );
+            _createAboutCommandHandler.Handle(command);
             return Ok("Hakkında Bilgisi Eklendi");
         }
         [HttpDelete]
@@ -55,7 +55,8 @@ namespace CarBook.WebAPI.Controllers
         public async Task<IActionResult> UpdateAbout(UpdateAboutCommand updateAboutCommand)
         {
             await _updateAboutCommandHandler.Handle(updateAboutCommand);
-            return Ok("Hakkında Bilgisi Güncellendi");            
+            return Ok("Hakkında Bilgisi Güncellendi");
         }
     }
 }
+
